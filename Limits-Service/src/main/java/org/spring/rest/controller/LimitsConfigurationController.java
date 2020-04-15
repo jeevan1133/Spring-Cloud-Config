@@ -1,6 +1,6 @@
 package org.spring.rest.controller;
 
-import org.spring.rest.controller.beans.Configuration;
+import org.spring.rest.configuration.Configuration;
 import org.spring.rest.controller.beans.LimitsConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class LimitsConfigurationController {
 
 	@GetMapping("/limits")
 	public LimitsConfiguration retrieveLimitsFromConfig() {
-		log.info("In limits class");
+		log.info("IN limits class");
 
 		return new LimitsConfiguration(configuration.getMaximum(),configuration.getMinimum());
 	}
