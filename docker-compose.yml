@@ -1,0 +1,14 @@
+version: '3'
+services:
+  eureka:
+    build: ./Netlifx-Eureka-Naming-Server
+    ports:
+      - "8761:8761"
+  zuul:
+    build: ./Netlifx-Zuul-Api-Gateway
+    ports:
+      - "8765:8765"
+  exchange:
+    build: ./Limits-Currency-Exchange-Service
+    ports:
+      - "8001:8001"

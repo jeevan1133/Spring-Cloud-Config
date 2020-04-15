@@ -1,0 +1,18 @@
+# bootstrap.yaml
+---
+spring:
+  application:
+    name: rest-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+  profiles:
+    active: dev
+
+logging:
+  file:
+    name: limits-service-log.log
+  level:
+    org:
+      springframework: ERROR
+      
