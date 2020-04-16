@@ -1,0 +1,22 @@
+#cloud configuration
+---
+
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/jeevan1133/git-local-config
+---
+
+logging:
+  file:
+    clean-history-on-start: true
+    name: limits-cloud-config.log
+  level:
+    org:
+      springframework: ERROR
+server:
+  port: 8888
