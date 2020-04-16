@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.2.RELEASE</version>
+		<version>2.2.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.spring</groupId>
@@ -63,7 +63,6 @@
 			<artifactId>
 				spring-cloud-starter-netflix-eureka-client
 			</artifactId>
-			<version>2.1.0.RELEASE</version>
 		</dependency>
 	</dependencies>
 

@@ -1,26 +1,58 @@
-version: '3'
+version: '3.7'
 services:
-  eureka:
-    build: ./Netlifx-Eureka-Naming-Server
-    ports:
-      - "8761:8761"
-  zuul:
-    build: ./Netlifx-Zuul-Api-Gateway
-    ports:
-      - "8765:8765"
   config:
     build: ./Limits-Spring-Could-Config-Server
     ports:
       - "8888:8888"
+    volumes:
+      - maven-repo:/root/.m2:ro
+    networks:
+      - my_isolated_bridge_network_for_spring_cloud
+  eureka:
+    build: ./Netlifx-Eureka-Naming-Server
+    ports:
+      - "8761:8761"
+    volumes:
+      - maven-repo:/root/.m2:ro
+    networks:
+      - my_isolated_bridge_network_for_spring_cloud
+  zuul:
+    build: ./Netlifx-Zuul-Api-Gateway
+    ports:
+      - "8765:8765"
+    volumes:
+      - maven-repo:/root/.m2:ro
+    networks:
+      - my_isolated_bridge_network_for_spring_cloud
   limits:
       build: ./Limits-Service
       ports:
         - "8080:8080"
+      volumes:
+        - maven-repo:/root/.m2:ro
+      networks:
+        - my_isolated_bridge_network_for_spring_cloud
   exchange:
     build: ./Limits-Currency-Exchange-Service
     ports:
       - "8001:8001"
+    volumes:
+      - maven-repo:/root/.m2:ro
+    networks:
+      - my_isolated_bridge_network_for_spring_cloud
   calculation:
-      build: ./Limits-Currency-Calculation-Service
-      ports:
-          - "8100:8100"
+    build: ./Limits-Currency-Calculation-Service
+    ports:
+      - "8100:8100"
+    volumes:
+      - maven-repo:/root/.m2:ro
+    networks:
+      - my_isolated_bridge_network_for_spring_cloud
+
+volumes:
+  maven-repo:
+
+networks:
+  my_isolated_bridge_network_for_spring_cloud:
+    driver: bridge
+    name: spring_cloud_network

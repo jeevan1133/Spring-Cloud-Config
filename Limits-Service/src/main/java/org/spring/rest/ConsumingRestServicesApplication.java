@@ -2,6 +2,7 @@ package org.spring.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.spring.rest.beans.Configuration;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,5 +33,10 @@ public class ConsumingRestServicesApplication {
 					"https://gturnquist-quoters.cfapps.io/api/random", Quote.class);
 			log.info(quote.toString());
 		};
+	}
+	
+	@Bean
+	public Configuration getHelloWorldBean() {
+		return new Configuration();
 	}
 }
