@@ -8,6 +8,7 @@
 		<version>2.2.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>org.spring</groupId>
 	<artifactId>consume.rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -15,7 +16,7 @@
 	<description>Consuming REST Services</description>
 
 	<properties>
-		<java.version>13</java.version>
+		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.BUILD-SNAPSHOT</spring-cloud.version>
 	</properties>
 
@@ -42,6 +43,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>
+				spring-cloud-starter-netflix-eureka-client
+			</artifactId>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -57,6 +64,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>config-server</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

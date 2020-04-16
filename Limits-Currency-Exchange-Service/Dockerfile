@@ -1,9 +1,8 @@
-FROM java:8-jdk-alpine
+FROM maven:3.3-jdk-8-onbuild
 
-COPY ./target/*.jar /usr/app/exchange.jar
-
-WORKDIR /usr/app
+FROM java:8
+COPY --from=0 /usr/src/app/target/currency-exchange-service.jar /opt/currency-exchange-service.jar
 
 EXPOSE 8001
 
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "exchange.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "/opt/currency-exchange-service.jar"]

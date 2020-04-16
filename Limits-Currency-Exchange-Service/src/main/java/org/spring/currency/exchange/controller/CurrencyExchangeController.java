@@ -21,7 +21,6 @@ public class CurrencyExchangeController {
 
 	@RequestMapping(value="/currency-exchange/from/{from}/to/{to}", method=RequestMethod.GET, produces={ MediaType.APPLICATION_JSON_VALUE})	
 	public ExchangeValue retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to) {
-//		ExchangeValue exchangeValue = new ExchangeValue(1000L, from, to, BigDecimal.valueOf(65));
 		ExchangeValue exchangeValue = repository.findByFromAndTo(from, to);
 		exchangeValue.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
 		return exchangeValue;

@@ -1,9 +1,10 @@
-FROM java:8-jdk-alpine
+FROM maven:3.3-jdk-8-onbuild
 
-COPY ./target/*.jar /usr/app/eureka.jar
+VOLUME /Users/jeevanbasnet/.m2 /root/.m2
 
-WORKDIR /usr/app
+FROM java:8
+COPY --from=0 /usr/src/app/target/eureka-server.jar /opt/eureka-server.jar
 
 EXPOSE 8761
 
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "eureka.jar"]
+CMD ["java", "-jar", "-Dspring.profiles.active=dev", "/opt/eureka-server.jar"]

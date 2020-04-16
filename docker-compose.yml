@@ -8,7 +8,19 @@ services:
     build: ./Netlifx-Zuul-Api-Gateway
     ports:
       - "8765:8765"
+  config:
+    build: ./Limits-Spring-Could-Config-Server
+    ports:
+      - "8888:8888"
+  limits:
+      build: ./Limits-Service
+      ports:
+        - "8080:8080"
   exchange:
     build: ./Limits-Currency-Exchange-Service
     ports:
       - "8001:8001"
+  calculation:
+      build: ./Limits-Currency-Calculation-Service
+      ports:
+          - "8100:8100"

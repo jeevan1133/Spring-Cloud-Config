@@ -1,9 +1,8 @@
-FROM java:8-jdk-alpine
+FROM maven:3.3-jdk-8-onbuild
 
-COPY ./target/*.jar /usr/app/exchange.jar
+FROM java:8
+COPY --from=0 /usr/src/app/target/limits-service.jar /opt/limits-service.jar
 
-WORKDIR /usr/app
+EXPOSE 8080
 
-EXPOSE 8001
-
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "exchange.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "/opt/limits-service.jar"]

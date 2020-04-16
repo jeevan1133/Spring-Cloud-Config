@@ -50,7 +50,7 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
@@ -70,6 +70,11 @@
 			</artifactId>
 			<version>2.1.0.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
+			<version>1.4.7.RELEASE</version>
+		</dependency>
 	</dependencies>
 
 	<dependencyManagement>
@@ -85,6 +90,7 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>currency-calculation-service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

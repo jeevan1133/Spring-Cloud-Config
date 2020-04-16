@@ -1,9 +1,9 @@
-FROM java:8-jdk-alpine
+FROM maven:3.3-jdk-8-onbuild
 
-COPY ./target/*.jar /usr/app/exchange.jar
+FROM java:8
 
-WORKDIR /usr/app
+COPY --from=0 /usr/src/app/target/config-server.jar /opt/config-server.jar
 
 EXPOSE 8001
 
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "exchange.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "/opt/config-server.jar"]
