@@ -3,20 +3,28 @@
 DIRECTORIES=`/bin/ls -d */`
 
 function CLEAN_AND_PACKAGE() {
-    if [ -f "./mvnw" ];
-    then
-        ./mvnw clean package
-    fi
+    [ -f "./mvnw" ] && ./mvnw clean -DskipTests=true  install
 }
 
-function MAIN() {
-    for DIR in $DIRECTORIES;
+function RUN() {
+    DIRS=$1
+    for DIR in $DIRS;
     do
         cd $DIR
         CLEAN_AND_PACKAGE
         cd ..
     done
-    docker-compose up
 }
 
-MAIN
+function MAIN() {
+    if [ -z "$1"  ] ;
+    then
+        echo "Running on all directories"
+        RUN $DIRECTORIES
+    else
+        RUN $@
+    fi
+    docker-compose up --build
+}
+
+MAIN $@

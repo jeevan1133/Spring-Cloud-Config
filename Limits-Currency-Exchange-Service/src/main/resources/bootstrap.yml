@@ -1,0 +1,28 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eurekaserver:8761/eureka
+
+server:
+  port: 8001
+
+spring:
+  cloud:
+    config:
+      uri: http://limits_service:8080
+  application:
+    name: currency-exchange-service
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+  h2:
+    console:
+      enabled: true
+      password: ''
+      username: sa
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true

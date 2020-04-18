@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      server:
+        git:
+          uri: https://github.com/jeevan1133/git-local-config
+      retry:
+        max-attempts: 3
+
+server:
+  port: 8888
+
+logging:
+  file:
+    clean-history-on-start: true
+    name: limits-cloud-config.log
+  level:
+    org:
+      springframework: ERROR
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://eurekaserver:8761/eureka

@@ -1,11 +1,6 @@
-FROM maven:3.3-jdk-8-onbuild
+FROM openjdk:8-jdk-alpine
 
-VOLUME maven-repo:/root/.m2
-
-FROM java:8
-COPY --from=0 /usr/src/app/target/currency-exchange-service.jar /opt/currency-exchange-service.jar
-
-#COPY target/currency-exchange-service.jar /opt/currency-exchange-service.jar
+COPY target/currency-exchange-service.jar /opt/currency-exchange-service.jar
 
 EXPOSE 8001
 

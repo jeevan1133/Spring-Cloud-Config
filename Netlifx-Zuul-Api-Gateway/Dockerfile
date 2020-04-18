@@ -1,7 +1,6 @@
-FROM maven:3.3-jdk-8-onbuild
+FROM openjdk:8-jdk-alpine
 
-FROM java:8
-COPY --from=0 /usr/src/app/target/zuul-gateway.jar /opt/zuul-gateway.jar
+COPY target/zuul-gateway.jar /opt/zuul-gateway.jar
 
 EXPOSE 8765
 

@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: currency-calculation-service
+
+server:
+  port: 8100
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaserver:8761/eureka
+
+
+exchangeservice:
+  ribbon:
+    listOfServers: http://exchangeservice:8001
+    
+REST:
+  SERVICE:
+    HOSTNAME: exchangeservice

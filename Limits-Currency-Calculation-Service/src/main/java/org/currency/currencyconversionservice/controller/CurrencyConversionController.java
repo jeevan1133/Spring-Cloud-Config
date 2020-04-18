@@ -18,6 +18,7 @@ public class CurrencyConversionController {
 	@GetMapping("/currency-converter/from/{from}/to/{to}/quantity/{quantity}")
 	public CurrencyConversionBean convertCurrency(@PathVariable String from,
 			@PathVariable String to, @PathVariable BigDecimal quantity) {
+		System.out.println("GET MAPPING WIHTOUT FIEGN");
 		return fallback.getConversion(from, to, quantity);
 	}
 
