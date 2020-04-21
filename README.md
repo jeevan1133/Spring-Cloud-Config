@@ -15,4 +15,3 @@ Clone this repository and build the examples using:
 ```
 docker-compose up
 ```
-May not work with ```docker-compose up```. Run run.sh

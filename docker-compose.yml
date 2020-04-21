@@ -1,58 +1,67 @@
-version: "3"
+version: "3.7"
+
+# networks:
+#   spring_cloud_network:
+#     name: custom_network
+
+networks:
+  spring_cloud_network:
+    external:
+      name: spring_cloud_network
+
 services:
   config:
     build: Limits-Spring-Cloud-Config-Server/
     ports:
       - "8888:8888"
-    links:
-      - eureka
     depends_on:
       - eureka
     networks:
      - spring_cloud_network
+    container_name: configserver
   eureka:
     build: Netlifx-Eureka-Naming-Server/
     ports:
       - "8761:8761"
     networks:
       - spring_cloud_network
+    container_name: eurekaserver
   zuul:
     build: ./Netlifx-Zuul-Api-Gateway
     ports:
       - "8765:8765"
-    links:
+    depends_on:
       - eureka
     networks:
       - spring_cloud_network
+    container_name: zuulserver
   limits:
       build: ./Limits-Service
       ports:
         - "8080:8080"
       depends_on:
         - config
-      links:
-        - config
+        - eureka
       networks:
         - spring_cloud_network
+      container_name: limitsservice
   exchange:
     build: ./Limits-Currency-Exchange-Service
     ports:
       - "8001:8001"
-    links:
+    depends_on:
       - limits
       - config
+      - eureka
     networks:
       - spring_cloud_network
+    container_name: exchangeservice
   calculation:
     build: ./Limits-Currency-Calculation-Service
     ports:
       - "8100:8100"
-    links:
-      - exchange
-      - config
+    depends_on:
+      - eureka
     networks:
       - spring_cloud_network
-
-networks:
-  spring_cloud_network:
-    external: true
+    container_name: calculation

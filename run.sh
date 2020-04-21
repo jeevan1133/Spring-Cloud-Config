@@ -24,7 +24,7 @@ function MAIN() {
     do
         cd $DIR
         CLEAN_AND_PACKAGE
-        ./build.sh
+        #./build.sh
         #FOLDER=`echo $DIR | tr '[:upper:]' '[:lower:]'`
         #IMAGE_NAME=`echo $FOLDER | tr -d /`
         #build $IMAGE_NAME

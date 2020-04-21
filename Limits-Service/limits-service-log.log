@@ -1,8 +1,0 @@
-2020-04-17 10:42:33.548  INFO 70421 --- [main] .r.ConsumingRestServicesApplicationTests : The following profiles are active: dev
-2020-04-17 10:42:36.600  WARN 70421 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-04-17 10:42:36.603  INFO 70421 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-04-17 10:42:36.645  INFO 70421 --- [main] c.netflix.config.DynamicPropertyFactory  : DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@51c8f62c
-2020-04-17 10:42:37.300  WARN 70421 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
-2020-04-17 10:42:37.303  INFO 70421 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
-2020-04-17 10:42:39.282  INFO 70421 --- [main] .r.ConsumingRestServicesApplicationTests : Started ConsumingRestServicesApplicationTests in 11.773 seconds (JVM running for 13.985)
-2020-04-17 10:42:39.819  INFO 70421 --- [main] o.s.r.ConsumingRestServicesApplication   : Quote(type=success, value=Value(id=4, quote=Previous to Spring Boot, I remember XML hell, confusing set up, and many hours of frustration.))

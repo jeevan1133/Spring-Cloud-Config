@@ -3,16 +3,21 @@
 DIRECTORIES=`/bin/ls -d */`
 
 function CLEAN_AND_PACKAGE() {
-    [ -f "./mvnw" ] && ./mvnw clean -DskipTests=true  install
+    if [ -f "./mvnw" ]
+    then
+        ./mvnw clean -DskipTests=true install
+    fi
 }
 
 function RUN() {
-    DIRS=$1
-    for DIR in $DIRS;
+    DIRS_TO_RUN=$1
+    for DIR in $DIRS_TO_RUN;
     do
-        cd $DIR
-        CLEAN_AND_PACKAGE
-        cd ..
+        if [ -d "$DIR" ];
+        then
+            cd "$DIR" &&  echo "Running on $DIR" && CLEAN_AND_PACKAGE;
+            cd ..
+        fi
     done
 }
 
@@ -20,7 +25,7 @@ function MAIN() {
     if [ -z "$1"  ] ;
     then
         echo "Running on all directories"
-        RUN $DIRECTORIES
+        RUN "$DIRECTORIES"
     else
         RUN $@
     fi
