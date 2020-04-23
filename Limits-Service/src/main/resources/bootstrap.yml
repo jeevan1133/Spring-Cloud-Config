@@ -6,14 +6,14 @@ spring:
     config:
       discovery:
         enabled: true
-        serviceId: configserver        # using configserver as name of the container is configserver
-       uri: http://configserver:8888
+      fail-fast: true      
+      uri: http://configserver:8888
   profiles:
-    active: dev
+    active: dev      
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://eurekaserver:8761/eureka
   instance:
-    nonSecurePort: 8080
+    leaseRenewalIntervalInSeconds: 10

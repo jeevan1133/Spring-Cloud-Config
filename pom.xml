@@ -19,7 +19,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-cloud.version>Hoxton.SR2</spring-cloud.version>
+		<spring-cloud.version>Hoxton.SR3</spring-cloud.version>
 		<netflix-eureka-version>2.1.0.RELEASE</netflix-eureka-version>
 		<spring-cloud-starter-config-version>2.2.2.RELEASE</spring-cloud-starter-config-version>
 		<spring-cloud-netflix-hystrix-version>2.2.2.RELEASE</spring-cloud-netflix-hystrix-version>
@@ -38,16 +38,10 @@
 		<module>Limits-Currency-Calculation-Service</module>
 	</modules>
 
-	<dependencies>		
+	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency> 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -66,6 +60,18 @@
 			<version>${netflix-eureka-version}</version>
 		</dependency>
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<repositories>
 		<repository>

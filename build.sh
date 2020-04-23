@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DIRECTORIES=`/bin/ls -d */`
+RC=-1
 
 function CLEAN_AND_PACKAGE() {
     if [ -f "./mvnw" ]
@@ -21,6 +22,15 @@ function RUN() {
     done
 }
 
+function try_curl() {
+    host=$1
+    port=$2
+
+    curl $1:$2
+    RC=$?
+    echo "returning $RC"
+}
+
 function MAIN() {
     if [ -z "$1"  ] ;
     then
@@ -29,7 +39,15 @@ function MAIN() {
     else
         RUN $@
     fi
-    docker-compose up --build
+    docker-compose up --build -d
+    docker-compose pause limitsservice
+    while [ "$RC" != 0 ]
+    do
+      echo "Running curl..."
+      try_curl "localhost" "8888"
+      sleep 5
+    done
+    docker-compose unpause limitsservice
 }
 
 MAIN $@

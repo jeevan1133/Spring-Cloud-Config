@@ -5,6 +5,7 @@ spring:
 eureka:
   instance:
     nonSecurePort: 8888
+    leaseRenewalIntervalInSeconds: 10
   client:
     serviceUrl:
       defaultZone: http://eurekaserver:8761/eureka
