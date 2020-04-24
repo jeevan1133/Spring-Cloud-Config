@@ -4,6 +4,7 @@ spring:
     name: rest-service
   cloud:
     config:     
+      fail-fast: true
       uri: http://configserver:8888
   profiles:
     active: dev

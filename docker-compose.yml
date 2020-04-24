@@ -44,6 +44,7 @@ services:
         - eureka
       networks:
         - spring_cloud_network
+      restart: always
       container_name: limitsservice
   exchange:
     build: ./Limits-Currency-Exchange-Service
