@@ -18,31 +18,36 @@ docker-compose up
 
 ### Services Architecture
 
-![Alt text](https://g.gravizo.com/svg?
+![Alt text](https://g.gravizo.com/source/custom_image?https%3A%2F%2Fraw.githubusercontent.com%2FTLmaK0%2Fgravizo%2Fmaster%2FREADME.md)
+<details>
+<summary></summary>
+custom_image
   digraph architecture {
-start -> User
-rankdir = TB;
-node[shape=component]
-Ribbon[shape=underline]
-{rank=same; User, ZuulServer}
-{rank=same; CurrencyExchangeService1, CurrencyExchangeService2, CurrencyExchangeService3};
-{rank=same; Ribbon, EurekaNamingServer };
-{rank=same; CurrencyCalculationService, CurrencyExchangeService, LimitsService};
-User -> ZuulServer
-ZuulServer -> EurekaNamingServer
-Ribbon -> CurrencyExchangeService1
-Ribbon -> CurrencyExchangeService2
-Ribbon -> CurrencyExchangeService3
-CurrencyCalculationService -> Ribbon
-Ribbon -> EurekaNamingServer
-CurrencyExchangeService -> EurekaNamingServer;
-CurrencyCalculationService -> EurekaNamingServer;
-LimitsService -> EurekaNamingServer
-LimitsService -> SpringCloudConfigServer
-SpringCloudConfigServer -> Git
-SpringCloudConfigServer -> EurekaNamingServer
-CurrencyExchangeService -> DB
-CurrencyExchangeService -> LimitsService
-User [shape=Mdiamond];
-start[shape=Mdiamond];
-})
+    start -> User
+    rankdir = TB;
+    node[shape=component]
+    Ribbon[shape=underline]
+    {rank=same; User, ZuulServer}
+    {rank=same; CurrencyExchangeService1, CurrencyExchangeService2, CurrencyExchangeService3};
+    {rank=same; Ribbon, EurekaNamingServer };
+    {rank=same; CurrencyCalculationService, CurrencyExchangeService, LimitsService};
+    User -> ZuulServer
+    ZuulServer -> EurekaNamingServer
+    Ribbon -> CurrencyExchangeService1
+    Ribbon -> CurrencyExchangeService2
+    Ribbon -> CurrencyExchangeService3
+    CurrencyCalculationService -> Ribbon
+    Ribbon -> EurekaNamingServer
+    CurrencyExchangeService -> EurekaNamingServer;
+    CurrencyCalculationService -> EurekaNamingServer;
+    LimitsService -> EurekaNamingServer
+    LimitsService -> SpringCloudConfigServer
+    SpringCloudConfigServer -> Git
+    SpringCloudConfigServer -> EurekaNamingServer
+    CurrencyExchangeService -> DB
+    CurrencyExchangeService -> LimitsService
+    User [shape=Mdiamond];
+    start[shape=Mdiamond];
+  }
+  custom_image
+  </details>
