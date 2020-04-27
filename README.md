@@ -18,19 +18,31 @@ docker-compose up
 
 ### Services Architecture
 
-```
-digraph architecture {
-  rankdir=TB;
+![Alt text](https://g.gravizo.com/svg?
+  digraph architecture {
+start -> User
+rankdir = TB;
+node[shape=component]
+Ribbon[shape=underline]
+{rank=same; User, ZuulServer}
+{rank=same; CurrencyExchangeService1, CurrencyExchangeService2, CurrencyExchangeService3};
+{rank=same; Ribbon, EurekaNamingServer };
 {rank=same; CurrencyCalculationService, CurrencyExchangeService, LimitsService};
-Configuration[shape=cylinder]
-Database[shape=cylinder]
-LimitsService, CurrencyCalculationService, CurrencyExchangeService[shape=component]
-
-  CurrencyCalculationService -> CurrencyExchangeService -> LimitsService;
-
-  CurrencyExchangeService->Database;
-  LimitsService->Configuration;
-
-}
-
-```                  
+User -> ZuulServer
+ZuulServer -> EurekaNamingServer
+Ribbon -> CurrencyExchangeService1
+Ribbon -> CurrencyExchangeService2
+Ribbon -> CurrencyExchangeService3
+CurrencyCalculationService -> Ribbon
+Ribbon -> EurekaNamingServer
+CurrencyExchangeService -> EurekaNamingServer;
+CurrencyCalculationService -> EurekaNamingServer;
+LimitsService -> EurekaNamingServer
+LimitsService -> SpringCloudConfigServer
+SpringCloudConfigServer -> Git
+SpringCloudConfigServer -> EurekaNamingServer
+CurrencyExchangeService -> DB
+CurrencyExchangeService -> LimitsService
+User [shape=Mdiamond];
+start[shape=Mdiamond];
+})
