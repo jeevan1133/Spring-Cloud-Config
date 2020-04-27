@@ -20,7 +20,7 @@ docker-compose up
 
 ![Alt text](https://g.gravizo.com/source/custom_image?https%3A%2F%2Fraw.githubusercontent.com%2Fjeevan1133%2FSpring-Cloud-Config%2Fmaster%2FREADME.md)
 <details>
-<summary>How the services communicate with other services</summary>
+<summary>How services communicate with other services</summary>
 custom_image
   digraph architecture {
     start -> User
