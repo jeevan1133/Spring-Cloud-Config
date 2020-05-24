@@ -26,31 +26,32 @@ All of the requests pass through nginx web proxy. These requests are then forwar
 custom_image
   digraph architecture {    
     rankdir = TB;
-    User [shape=Mdiamond]
-    node[shape=component]
-    Ribbon[shape=underline]    
-    {rank=same; User, Nginx, ZuulServer}
-    {rank=same; CurrencyExchangeService1, CurrencyExchangeService2, CurrencyExchangeService3};
+    User [shape=Mdiamond];
+    node[shape=component];
+    Ribbon[shape=underline];
+    {rank=same; User, Nginx, ZuulServer};
     {rank=same; Ribbon, EurekaNamingServer };
     {rank=same; CurrencyCalculationService, CurrencyExchangeService, LimitsService};  
-    start -> User
-    User -> Nginx
-    Nginx -> ZuulServer
-    Nginx -> CurrencyCalculationService
-    CurrencyCalculationService -> ZuulServer
-    ZuulServer -> EurekaNamingServer
-    Ribbon -> EurekaNamingServer
-    SpringCloudConfigServer -> EurekaNamingServer
+    {rank=same; CurrencyExchangeService1, CurrencyExchangeService2, CurrencyExchangeService3};
+    start -> User;
+    User -> Nginx;
+    Nginx -> ZuulServer;
+    Nginx -> CurrencyCalculationService;
+    CurrencyCalculationService -> ZuulServer;
+    ZuulServer -> EurekaNamingServer;
+    Ribbon -> EurekaNamingServer;
+    SpringCloudConfigServer -> EurekaNamingServer;
     CurrencyExchangeService -> EurekaNamingServer;
     CurrencyCalculationService -> EurekaNamingServer;
-    LimitsService -> EurekaNamingServer
-    CurrencyExchangeService -> LimitsService   
-    LimitsService -> SpringCloudConfigServer
-    Ribbon -> CurrencyExchangeService1
-    Ribbon -> CurrencyExchangeService2
-    Ribbon -> CurrencyExchangeService3
-    CurrencyExchangeService -> DB
-    SpringCloudConfigServer -> Git
+    LimitsService -> EurekaNamingServer;
+    CurrencyExchangeService -> LimitsService;
+    LimitsService -> SpringCloudConfigServer;
+    Ribbon -> CurrencyExchangeService1;
+    Ribbon -> CurrencyExchangeService2;
+    Ribbon -> CurrencyExchangeService3;
+    CurrencyExchangeService -> DB;
+    SpringCloudConfigServer -> Git;
+    start[shape=Mdiamond];
   }
   custom_image
   </details>
