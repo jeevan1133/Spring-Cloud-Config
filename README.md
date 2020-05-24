@@ -26,6 +26,7 @@ All of the requests pass through nginx web proxy. These requests are then forwar
 custom_image
   digraph architecture {    
     rankdir = TB;
+    start [shape=Mdiamond]
     node[shape=component]
     Ribbon[shape=underline]    
     {rank=same; Nginx, ZuulServer}
@@ -49,7 +50,6 @@ custom_image
     Ribbon -> CurrencyExchangeService3
     CurrencyExchangeService -> DB
     SpringCloudConfigServer -> Git
-    start [shape=Mdiamond];
   }
   custom_image
   </details>
