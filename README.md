@@ -20,18 +20,19 @@ docker-compose up
 
 ![Alt text](https://g.gravizo.com/source/custom_image?https%3A%2F%2Fraw.githubusercontent.com%2Fjeevan1133%2FSpring-Cloud-Config%2Fmaster%2FREADME.md)
 <details>
-<summary>How services communicate with other services</summary>
+<summary>Micro Services Architecture</summary>
 custom_image
-  digraph architecture {
-    start -> User
+  digraph architecture {    
     rankdir = TB;
     node[shape=component]
-    Ribbon[shape=underline]
-    {rank=same; User, ZuulServer}
+    Ribbon[shape=underline]    
+    {rank=same; User, Nginx, ZuulServer}
     {rank=same; CurrencyExchangeService1, CurrencyExchangeService2, CurrencyExchangeService3};
     {rank=same; Ribbon, EurekaNamingServer };
     {rank=same; CurrencyCalculationService, CurrencyExchangeService, LimitsService};
-    User -> ZuulServer
+    start -> Nginx
+    Nginx -> ZuulServer
+    Nginx -> CurrencyCalculationService    
     ZuulServer -> EurekaNamingServer
     Ribbon -> CurrencyExchangeService1
     Ribbon -> CurrencyExchangeService2
@@ -45,9 +46,8 @@ custom_image
     SpringCloudConfigServer -> Git
     SpringCloudConfigServer -> EurekaNamingServer
     CurrencyExchangeService -> DB
-    CurrencyExchangeService -> LimitsService
-    User [shape=Mdiamond];
-    start[shape=Mdiamond];
+    CurrencyExchangeService -> LimitsService    
+    start [shape=Mdiamond];
   }
   custom_image
   </details>
