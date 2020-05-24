@@ -31,26 +31,24 @@ custom_image
     {rank=same; Nginx, ZuulServer}
     {rank=same; CurrencyExchangeService1, CurrencyExchangeService2, CurrencyExchangeService3};
     {rank=same; Ribbon, EurekaNamingServer };
-    {rank=same; CurrencyCalculationServiceWithoutFeign, CurrencyCalculationServiceWithFeign, CurrencyExchangeService, LimitsService};
-    start -> Nginx
+    {rank=same; CurrencyCalculationService, CurrencyExchangeService, LimitsService};  
     Nginx -> ZuulServer
-    Nginx -> CurrencyCalculationServiceWithFeign    
-    CurrencyCalculationServiceWithFeign -> Ribbon
+    Nginx -> CurrencyCalculationService
+    CurrencyCalculationService -> ZuulServer
     ZuulServer -> EurekaNamingServer
-    CurrencyCalculationService -> ZuulServer    
     Ribbon -> EurekaNamingServer
     SpringCloudConfigServer -> EurekaNamingServer
     CurrencyExchangeService -> EurekaNamingServer;
     CurrencyCalculationService -> EurekaNamingServer;
-    CurrencyExchangeService -> LimitsService   
     LimitsService -> EurekaNamingServer
+    CurrencyExchangeService -> LimitsService   
     LimitsService -> SpringCloudConfigServer
     Ribbon -> CurrencyExchangeService1
     Ribbon -> CurrencyExchangeService2
     Ribbon -> CurrencyExchangeService3
     CurrencyExchangeService -> DB
     SpringCloudConfigServer -> Git
-    start [shape=Mdiamond];
+    Nginx [shape=Mdiamond];
   }
   custom_image
   </details>
