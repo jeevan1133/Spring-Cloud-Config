@@ -11,3 +11,6 @@ eureka:
       defaultZone: http://eurekaserver:8761/eureka
   instance:
       appname: zuulserver
+
+zuul:
+  sensitiveHeaders:

@@ -1,6 +1,10 @@
 spring:
   application:
     name: spring-cloud-config-server
+  cloud:
+    config:
+      enabled: false
+
 
 eureka:
   instance:

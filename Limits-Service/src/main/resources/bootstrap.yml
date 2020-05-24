@@ -3,11 +3,12 @@ spring:
   application:
     name: rest-service
   cloud:
-    config:     
+    config:
+      fail-fast: true
       uri: http://configserver:8888
   profiles:
     active: dev
-    
+
 eureka:
   client:
     serviceUrl:

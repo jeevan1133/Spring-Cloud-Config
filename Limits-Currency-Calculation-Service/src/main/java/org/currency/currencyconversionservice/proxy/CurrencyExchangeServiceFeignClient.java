@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 //@FeignClient(name = "currency-exchange-service")
-//@FeignClient(name="netflix-zuul-api-gateway")
-@FeignClient(name = "zuulserver")
-// @RibbonClient(name = "currency-exchange-service")
-@RibbonClient(name = "exchangeservice") // , configuration=RibbonConfiguration.class)
+@FeignClient(name="netflix-zuul-api-gateway")
+//@FeignClient(name = "zuulserver")
+@RibbonClient(name = "currency-exchange-service")
+//@RibbonClient(name = "exchangeservice") // , configuration=RibbonConfiguration.class)
 public interface CurrencyExchangeServiceFeignClient {
 
-	@RequestMapping(method = RequestMethod.GET, value = "/currency-exchange/currency-exchange/from/{from}/to/{to}")
+	@RequestMapping(method = RequestMethod.GET, value = "/currency-exchange-service/currency-exchange/from/{from}/to/{to}")
 	public CurrencyConversionBean retrieveExchangeValue(
 			@RequestHeader(value = "Authorization") String authorizationHeader, @PathVariable("from") String from,
 			@PathVariable("to") String to);

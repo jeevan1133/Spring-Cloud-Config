@@ -4,10 +4,10 @@ DIRECTORIES=`/bin/ls -d */`
 RC=-1
 
 function CLEAN_AND_PACKAGE() {
-    return
+    #return
     if [ -f "./mvnw" ]
     then
-        ./mvnw -DskipTests=true install
+        ./mvnw -DskipTests=true package
     fi
 }
 
@@ -40,27 +40,29 @@ function MAIN() {
     else
         RUN $@
     fi
-    docker-compose up --build -d
+    docker-compose up --build  -d
 
-    PAUSE=0
+    #PAUSE=0
 
-    while [ "$RC" != 0 ]
-    do
-      echo "Running curl..."
-      try_curl "localhost" "8888"
-      sleep 15
-      if [ "$PAUSE" == 0 ]
-      then
-        docker container stop limitsservice
-        PAUSE=$(( $PAUSE + 1 ))
-      fi
-    done
-    RUNNING=$(docker container inspect --format "{{ .State.Status }}" limitsservice)
-    if [[ "$RUNNING" != "running" ]]
-    then
-      echo "Restarting limitsservice..."
-      docker container start limitsservice
-    fi
+    #while [ "$RC" != 0 ]
+    #do
+    #  echo "Running curl..."
+    #  try_curl "localhost" "8888"
+    #  echo "Try_curl returned $RC"
+    #  sleep 15
+    #  if [ "$PAUSE" == 0 ]
+    #  then
+    #    echo "Stopping limits service container"
+    #    docker container stop limitsservice
+    #    PAUSE=$(( $PAUSE + 1 ))
+    #  fi
+    #done
+    #RUNNING=$(docker container inspect --format "{{ .State.Status }}" limitsservice)
+    #if [[ "$RUNNING" != "running" ]]
+    #then
+    #  echo "Restarting limitsservice..."
+    #  docker container start limitsservice
+    #fi
 }
 
 MAIN $@
