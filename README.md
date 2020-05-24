@@ -33,7 +33,6 @@ custom_image
     {rank=same; Ribbon, EurekaNamingServer };
     {rank=same; CurrencyCalculationService, CurrencyExchangeService, LimitsService};  
     {rank=same; CurrencyExchangeService1, CurrencyExchangeService2, CurrencyExchangeService3};
-    start -> User;
     User -> Nginx;
     Nginx -> ZuulServer;
     Nginx -> CurrencyCalculationService;
@@ -51,7 +50,6 @@ custom_image
     Ribbon -> CurrencyExchangeService3;
     CurrencyExchangeService -> DB;
     SpringCloudConfigServer -> Git;
-    start[shape=Mdiamond];
   }
   custom_image
   </details>
