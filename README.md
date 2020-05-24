@@ -18,7 +18,7 @@ docker-compose up
 
 ### Services Architecture
 
-All of the requests pass through nginx web proxy. These requests are then forwarded to the respective uri. The forwarded requests are always logged as they are forwarded to zuul gateway server that filters the request. This helps to provides capabilities for dynamic routing and monitoring.
+All of the requests pass through nginx web proxy. These requests are then forwarded to the respective uri. The forwarded requests are always logged as they are forwarded to zuul gateway server that filters the request. This helps in dynamic routing and application monitoring.
 
 ![Alt text](https://g.gravizo.com/source/custom_image?https%3A%2F%2Fraw.githubusercontent.com%2Fjeevan1133%2FSpring-Cloud-Config%2Fmaster%2FREADME.md)
 <details>
@@ -26,14 +26,15 @@ All of the requests pass through nginx web proxy. These requests are then forwar
 custom_image
   digraph architecture {    
     rankdir = TB;
-    start [shape=Mdiamond]
+    User [shape=Mdiamond]
     node[shape=component]
     Ribbon[shape=underline]    
-    {rank=same; Nginx, ZuulServer}
+    {rank=same; User, Nginx, ZuulServer}
     {rank=same; CurrencyExchangeService1, CurrencyExchangeService2, CurrencyExchangeService3};
     {rank=same; Ribbon, EurekaNamingServer };
     {rank=same; CurrencyCalculationService, CurrencyExchangeService, LimitsService};  
-    start -> Nginx
+    start -> User
+    User -> Nginx
     Nginx -> ZuulServer
     Nginx -> CurrencyCalculationService
     CurrencyCalculationService -> ZuulServer
