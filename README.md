@@ -37,18 +37,18 @@ custom_image
     Nginx -> CurrencyCalculationServiceWithFeign    
     CurrencyCalculationServiceWithFeign -> Ribbon
     ZuulServer -> EurekaNamingServer
-    CurrencyCalculationService -> Ribbon
-    Ribbon -> CurrencyExchangeService1
-    Ribbon -> CurrencyExchangeService2
-    Ribbon -> CurrencyExchangeService3
+    CurrencyCalculationService -> ZuulServer    
     Ribbon -> EurekaNamingServer
     SpringCloudConfigServer -> EurekaNamingServer
     CurrencyExchangeService -> EurekaNamingServer;
     CurrencyCalculationService -> EurekaNamingServer;
-    CurrencyExchangeService -> DB
     CurrencyExchangeService -> LimitsService   
     LimitsService -> EurekaNamingServer
     LimitsService -> SpringCloudConfigServer
+    Ribbon -> CurrencyExchangeService1
+    Ribbon -> CurrencyExchangeService2
+    Ribbon -> CurrencyExchangeService3
+    CurrencyExchangeService -> DB
     SpringCloudConfigServer -> Git
     start [shape=Mdiamond];
   }
